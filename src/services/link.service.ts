@@ -102,8 +102,9 @@ export class LinkService {
         },
       });
 
-      if (candidate)
+      if (candidate && where.short_link != candidate.short_link) {
         throw new ConflictException('Such a short link already exists');
+      }
     }
 
     return this.prisma.link.update({ data, where });
